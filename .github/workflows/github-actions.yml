@@ -9,12 +9,12 @@ on:
       - main
 
   # Manually trigger upload job with workflow_dispatch
-  workflow_dispatch:
-    inputs:
-      image_tag:
-        description: 'Tag for the Docker image (default: latest)'
-        required: false
-        default: 'latest'
+  # workflow_dispatch:
+  #   inputs:
+  #     image_tag:
+  #       description: 'Tag for the Docker image (default: latest)'
+  #       required: false
+  #       default: 'latest'
 
 jobs:
   # Job 1: Build and Test (auto-triggered on push)
