@@ -14,12 +14,7 @@ on:
 
   # Manually trigger upload job with workflow_dispatch
   workflow_dispatch:
-    inputs:
-      image_tag:
-        description: 'Tag for the Docker image (default: latest)'
-        required: false
-        default: 'latest'
-
+    
 jobs:
   # Job 1: Build and Test (auto-triggered on push)
   build-and-test:
@@ -49,7 +44,7 @@ jobs:
   # Job 2: Docker Image Creation and Upload (manual trigger only)
   upload-and-deploy:
     needs: build-and-test  # Ensure this runs only after 'build_and_test' is successful
-    if: github.event_name == 'workflow_dispatch' && needs.build-and-test.result == 'success'  # Only trigger this job manually
+    if: ${{github.event_name == 'workflow_dispatch'}} 
     runs-on: ubuntu-latest
 
 
