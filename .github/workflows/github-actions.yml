@@ -45,7 +45,7 @@ jobs:
   # Job 2: Docker Image Creation and Upload (manual trigger only)
   upload-and-deploy:
     runs-on: windows-latest
-    needs: build_and_test  # Ensure this runs only after 'build_and_test' is successful
+    needs: build-and-test  # Ensure this runs only after 'build_and_test' is successful
     if: github.event_name == 'workflow_dispatch'  # Only trigger this job manually
 
     steps:
