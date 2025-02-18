@@ -11,7 +11,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Step 5: Copy the rest of the project into the container
-COPY . .
+COPY . /app
 
 # Step 6: Expose the port that Flask will use
 EXPOSE 5000
