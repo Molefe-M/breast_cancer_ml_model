@@ -46,10 +46,10 @@ jobs:
       run: |
         python -m unittest discover
 
-  # Job 2: Docker Image Creation and Upload (manual trigger only)
+  # Job 2: Docker Image Creation and Upload (manual or auto-trigger)
   upload-and-deploy:
     needs: build-and-test  # Ensure this runs only after 'build_and_test' is successful
-    if: ${{ (github.event_name == 'workflow_dispatch') }} 
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -69,7 +69,8 @@ jobs:
         uses: docker/build-push-action@v4
         with:
             context: .
-            tags: ${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:latest
-        
+            push: true  # Ensure the image is pushed to DockerHub
+            tags: ${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:${{ github.event.inputs.image_tag || 'latest' }}
+
       - name : Push image digest
-        run: echo ${{steps.build-and-publish.outputs.digets }}
+        run: echo ${{steps.build-and-publish.outputs.digest}}  # Correct the typo here
