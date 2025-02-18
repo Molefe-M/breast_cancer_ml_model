@@ -66,9 +66,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}  # Store DockerHub password in secrets
 
       - name: Build Docker image
-        run: |
-          docker build -t your-dockerhub-${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:${{ github.event.inputs.image_tag }} .
-
-      - name: Push Docker image to DockerHub
-        run: |
-          docker push your-dockerhub-${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:${{ github.event.inputs.image_tag }}
+        uses: docker/build-push-action@v4
+        with:
+            context: .
+            tags: ${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:latest
+        
+      - name : Push image digest
+        run: echo ${{steps.build-and-publish.outputs.digets }}
