@@ -68,8 +68,8 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v4
         with:
-            context: app/
-            file: app/Dockerfile
+            context: appp/
+            file: appp/Dockerfile
             push: true  # Ensure the image is pushed to DockerHub
             tags: ${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:latest
 
