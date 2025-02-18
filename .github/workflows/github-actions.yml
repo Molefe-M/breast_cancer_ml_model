@@ -67,8 +67,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t your-dockerhub-username/breast-cancer-api:${{ github.event.inputs.image_tag }} .
+          docker build -t your-dockerhub-${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:${{ github.event.inputs.image_tag }} .
 
       - name: Push Docker image to DockerHub
         run: |
-          docker push your-dockerhub-username/breast-cancer-api:${{ github.event.inputs.image_tag }}
+          docker push your-dockerhub-${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:${{ github.event.inputs.image_tag }}
