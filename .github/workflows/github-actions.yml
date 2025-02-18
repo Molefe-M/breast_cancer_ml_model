@@ -71,7 +71,7 @@ jobs:
             context: .
             # file: Dockerfile
             push: true  # Ensure the image is pushed to DockerHub
-            tags: ${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:${{ github.event.inputs.image_tag || 'latest' }}
+            tags: ${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:latest
 
       - name : Push image digest
         run: echo ${{steps.build-and-publish.outputs.digest}}  # Correct the typo here
