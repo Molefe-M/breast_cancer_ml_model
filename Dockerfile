@@ -17,4 +17,4 @@ COPY . /app
 EXPOSE 5000
 
 # Step 7: Set the command to run the application when the container starts
-CMD ["python", "src/app.py"]
+CMD ["python", "app.py"]
