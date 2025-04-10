@@ -8,15 +8,15 @@ This project exposes a simple machine learning model as an API for predicting br
 * Feature Count: 10 selected features chosen for their relevance
 
 # Quickstart (local)
-To work locally, follow these steps:
+-To work locally, follow these steps:
 
 * Step one: Clone the repo
-git clone https://github.com/Molefe-M/breast_cancer_ml_model.git
+-git clone https://github.com/Molefe-M/breast_cancer_ml_model.git
 
 * Step two: Create conda environment
-conda create -n breast_cancer_api python=3.9
-conda activate breast_cancer_api
-pip install -r requirements.txt
+-conda create -n breast_cancer_api python=3.9
+-conda activate breast_cancer_api
+-pip install -r requirements.txt
 
 * Step three: Run the app
 python app.py
