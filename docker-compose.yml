@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  flask-app:
+    build:
+      context: .  # Build the Dockerfile in the current directory
+    ports:
+      - "5000:5000"  # Expose Flask app on port 5000
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+    depends_on:
+      - model  # a model container that Flask needs to interact with
+    networks:
+      - app_network
+
+  model:
+    image: molefedockerhub/model_image_name:latest  # Using a prebuilt model image from DockerHub
+    ports:
+      - "5001:5001"  # Expose the model API
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge

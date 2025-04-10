@@ -16,5 +16,9 @@ COPY . /app
 # Step 6: Expose the port that Flask will use
 EXPOSE 5000
 
+# Set the environment variable for Flask to run in production mode
+ENV FLASK_APP=app.py
+ENV FLASK_ENV=production
+
 # Step 7: Set the command to run the application when the container starts
 CMD ["python", "app.py"]
