@@ -69,11 +69,16 @@ jobs:
       - name: Determine Image Tag from Script
         id: determine_tag
         run: |
-          # Execute your script and capture its output
-          # Assumes version_number.sh is executable and outputs the version string (e.g., '1.0.0')
+          # Define the fixed prefix for the tag
+          TAG_PREFIX="ml_model_breast_cancer"
+
+          # Execute your script and capture its version
           SCRIPT_VERSION=$(/bin/bash version_number.sh)
           FINAL_TAG="latest" # Fallback value
           
+          # Initialize FINAL_TAG with a unique, informative default/fallback
+          FINAL_TAG="${TAG_PREFIX}_latest"
+
           # Prioritization: If the script returns a version, use it. Otherwise, use 'latest'.
           if [[ -n "$SCRIPT_VERSION" ]]; then
             FINAL_TAG="$SCRIPT_VERSION"
