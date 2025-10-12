@@ -81,7 +81,7 @@ jobs:
 
           # Prioritization: If the script returns a version, use it. Otherwise, use 'latest'.
           if [[ -n "$SCRIPT_VERSION" ]]; then
-            FINAL_TAG="$SCRIPT_VERSION"
+            FINAL_TAG="${TAG_PREFIX}_$SCRIPT_VERSION"
           fi
           
           echo "Image Tag set to: $FINAL_TAG (Source: Script or Default)"
