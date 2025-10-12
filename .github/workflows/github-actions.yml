@@ -12,7 +12,7 @@ on:
   pull_request:
     branches:
       - main
-      
+
   workflow_dispatch:
     inputs:
       # This input is defined but will be IGNORED by the script logic below 
@@ -56,7 +56,7 @@ jobs:
     needs: build-and-test  # ONLY runs if build-and-test succeeds
     runs-on: ubuntu-latest # Runs on Ubuntu runner for Docker
     # Triggers: Manual (workflow_dispatch), Push to any branch, or Pull Request to main
-    if: ${{ success() && (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event_name == 'pull_request') }}
+    if: ${{ success() && (github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main') }}
 
     env:
       AWS_REGION: "eu-north-1"
